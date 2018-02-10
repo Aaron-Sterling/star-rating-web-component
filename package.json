@@ -1,0 +1,61 @@
+{
+  "name": "star-rating-web-component",
+  "version": "1.0.0",
+  "description": "Star Rating web component. Framework-independent: use with Ionic, Angular, Vue, React, vanilla Javascript, etc. You can choose any color (default is gold), any font size (default is 25px), and any number of stars (default is 5). Created with Stencil.js.",
+  "main": "dist/star-rating.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "browser": "dist/star-rating.js",
+  "scripts": {
+    "build": "stencil build",
+    "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
+    "serve": "stencil-dev-server",
+    "start": "npm run dev",
+    "test": "jest --no-cache",
+    "test.watch": "jest --watch --no-cache"
+  },
+  "dependencies": {
+    "@stencil/core": "0.2.3",
+    "ionicons": "^4.0.0-13"
+  },
+  "devDependencies": {
+    "@stencil/dev-server": "latest",
+    "@stencil/utils": "latest",
+    "@types/jest": "^21.1.1",
+    "jest": "^21.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aaron-Sterling/star-rating-stencil"
+  },
+  "author": "Aaron Sterling",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aaron-Sterling/star-rating-stencil/issues"
+  },
+  "homepage": "https://github.com/Aaron-Sterling/star-rating-stencil",
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx"
+    ]
+  },
+  "keywords": [
+    "component",
+    "rating",
+    "star",
+    "star-rating",
+    "stencil"
+  ]
+}
