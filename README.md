@@ -7,7 +7,7 @@ Star Rating web component. Framework-independent: use with Ionic, Angular, Vue, 
 
 ## Installation
 
-```npm install star-rating-stencil --save ```
+```npm install star-rating-web-component --save ```
 
 ## Sample Usage
 
