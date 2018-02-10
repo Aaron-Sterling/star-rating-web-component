@@ -1,6 +1,7 @@
 exports.config = {
   namespace: 'star-rating',
   generateDistribution: true,
+  generateWWW: false,
   bundles: [
     { components: ['star-rating'] }
   ],
