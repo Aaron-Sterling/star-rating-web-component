@@ -18,8 +18,8 @@ export class StarRating {
 
   
 
-  @Prop() initialRating: number = 0;
-  @Prop() fontSize: number = 25;
+  @Prop() rating: number = 0;
+  @Prop() size: number = 25;
   @Prop() stars: number = 5;
   @Prop() color: string = 'gold';
   //
@@ -31,7 +31,7 @@ export class StarRating {
 
   @State() currentRating: number;
 
-  @Event() newRating: EventEmitter<number>; 
+  @Event() rated: EventEmitter<number>; 
 
   private _fontSizeExpression: string;
   private _starCounter: Array<boolean> = new Array<boolean>();
@@ -49,21 +49,21 @@ export class StarRating {
   }
 
   backupOriginalProps() {
-    this._initialRatingOriginal = this.initialRating;
-    this._fontSizeOriginal = this.fontSize;
+    this._initialRatingOriginal = this.rating;
+    this._fontSizeOriginal = this.size;
     this._numberOfStarsOriginal = this.stars;
     this._colorOriginal = this.color;
   }
 
   initializeInternalState() {
-    this._fontSizeExpression = this.fontSize.toString() + 'px';
-    this.currentRating = this.initialRating;
+    this._fontSizeExpression = this.size.toString() + 'px';
+    this.currentRating = this.rating;
     this._starCounter = new Array<boolean>(this.stars).fill(true); 
   }
 
   propsHaveChanged(): boolean {
-    return !(this.initialRating === this._initialRatingOriginal && 
-             this.fontSize === this._fontSizeOriginal && 
+    return !(this.rating === this._initialRatingOriginal && 
+             this.size === this._fontSizeOriginal && 
              this.color === this._colorOriginal &&
              this.stars === this._numberOfStarsOriginal);
   }
@@ -88,7 +88,7 @@ export class StarRating {
 
   updateRating(rating: number) {
     this.currentRating = rating;
-    this.newRating.emit(rating);
+    this.rated.emit(rating);
   }
 
   iconName(starNumber: number): string {
