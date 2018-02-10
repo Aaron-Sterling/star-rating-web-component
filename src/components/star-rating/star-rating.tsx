@@ -4,7 +4,7 @@ import { Component, State, Prop, EventEmitter, Event } from '@stencil/core';
 *
 * Star Rating component written with Stencil.js
 * by Aaron Sterling
-* https://github.com/Aaron-Sterling/star-rating-stencil
+* https://github.com/Aaron-Sterling/star-rating-web-component
 *
 */
 
