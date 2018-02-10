@@ -52,10 +52,15 @@
     ]
   },
   "keywords": [
+    "angular",
     "component",
+    "ionic",
     "rating",
+    "react",
     "star",
     "star-rating",
-    "stencil"
+    "stencil",
+    "vue",
+    "web-component"
   ]
 }
