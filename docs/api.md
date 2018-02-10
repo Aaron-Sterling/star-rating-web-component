@@ -2,8 +2,8 @@
 
 The Star Rating web component supports four inputs and one output, as follows.
 
-* Page 1: [Installation](./README.md)
-* Page 2: [Setup](./docs/setup.md)
+* Page 1: [Installation](../README.md)
+* Page 2: [Setup](./setup.md)
 
 ## Inputs
 
@@ -30,5 +30,5 @@ Type ```number```. Sets the font size of the stars. (For example, an input of 50
 Event emitted when the user clicks on a star. The type of the ```EventEmitter``` is ```number```. The way you handle this event depends on which framework you are using. See the Setup page.
 
 
-* Page 1: [Installation](./README.md)
-* Page 2: [Setup](./docs/setup.md)
+* Page 1: [Installation](../README.md)
+* Page 2: [Setup](./setup.md)
