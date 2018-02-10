@@ -20,6 +20,8 @@ import 'star-rating-web-component';                     // add this import
 export class AppModule {}
 ```
 
+**Note:** If you are lazy-loading pages, put these imports into the module of each page where you want to use the Star Rating component, instead of putting them in ```app.module.ts```.
+
 ## Step 2: Tell ionic-app-scripts to include the component in the build
 
 Modify your ```copy.config.js``` so it contains additional build instructions. The path to this file will look something like:
