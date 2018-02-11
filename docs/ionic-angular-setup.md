@@ -6,7 +6,31 @@ This is a two-step process. First we tell the Angular side of things how to use 
 
 ## Step 1: Import into app.module.ts
 
-Modify your ```app.module.ts``` so it imports the schema CUSTOM_ELEMENTS_SCHEMA, as well as star-rating-web-component. Your file should look like this.
+Add the following to ```app.module.ts```.
+
+### Step 1a: Tell Angular to expect a custom HTML element
+```
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'; // add this import
+
+@NgModule({
+  declarations: [],
+  imports: [],
+  bootstrap: [],
+  entryComponents: [],
+  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]                     // add this line
+})
+export class AppModule {}
+```
+
+### Step 1b: Import the custom component
+```
+import 'star-rating-web-component';                     // add this import
+```
+
+### Steps 1a and 1b together
+
+When you've performed both steps, your ```app.module.ts``` should look like this.
 ```
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'; // add this import
 import 'star-rating-web-component';                     // add this import
