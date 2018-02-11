@@ -1,5 +1,7 @@
 # Ionic-Angular setup
 
+Return to [Setup](./setup.md)
+
 This is a two-step process. First we tell the Angular side of things how to use the component. Then we tell the Ionic side of things to include the component when it builds the bundle.
 
 ## Step 1: Import into app.module.ts
@@ -54,3 +56,5 @@ module.exports = {
   }
 }
 ```
+
+Return to [Setup](./setup.md)
