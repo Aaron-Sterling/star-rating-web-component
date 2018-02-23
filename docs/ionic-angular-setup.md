@@ -2,13 +2,24 @@
 
 Return to [Setup](./setup.md)
 
-This is a two-step process. First we tell the Angular side of things how to use the component. Then we tell the Ionic side of things to include the component when it builds the bundle.
+This is a two-step process. First we tell the Angular side of things how to use the component. Then we tell the Ionic side of things to include the component when it builds the bundle. The way we talk to Angular (really Ionic-Angular) depends on whether we are eagerly loading pages, or lazily loading them.
 
 ## Step 1: Import into app.module.ts
 
 Add the following to ```app.module.ts```.
 
-### Step 1a: Tell Angular to expect a custom HTML element
+### Step 1a: Register the custom component with ```app.module.ts```
+
+```
+import 'star-rating-web-component';                        // add this import
+```
+
+**Note**: this import statement does not load the entire web component. It only loads a small piece of code that then allows Ionic to load the full web component later when a template requests it.
+
+### Step 1b: When you use the component, tell the Angular compiler to expect a custom component
+
+If you import CUSTOM_ELEMENTS_SCHEMA into one of your page modules, the Angular compiler will accept elements it does not recognize. (Otherwise, it will throw an error.)  If you are lazy loading, you need to import this schema into each page modue where you want to use the web component.  If you are eagerly loading, you only need to import the schema into ```app.module.ts```.  Either way, it looks like this:
+
 ```
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'; // add this import
 
@@ -23,17 +34,13 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'; // add this import
 export class AppModule {}
 ```
 
-### Step 1b: Import the custom component
-```
-import 'star-rating-web-component';                     // add this import
-```
-
 ### Steps 1a and 1b together
 
-When you've performed both steps, your ```app.module.ts``` should look like this.
+When you've performed both steps, your ```app.module.ts``` should look like this if you are eagerly loading.
+
 ```
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'; // add this import
-import 'star-rating-web-component';                     // add this import
+import 'star-rating-web-component';                        // add this import
 
 @NgModule({
   declarations: [],
@@ -41,44 +48,33 @@ import 'star-rating-web-component';                     // add this import
   bootstrap: [],
   entryComponents: [],
   providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA] // add this line
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]                     // add this line
 })
 export class AppModule {}
 ```
 
-**Note:** If you are lazy-loading pages, put these imports into the module of each page where you want to use the Star Rating component, instead of putting them in ```app.module.ts```.
+If you are lazy loading, import just the web component in ```app.module.ts```, and just the schema in the individual lazily loaded modules.
 
 ## Step 2: Tell ionic-app-scripts to include the component in the build
 
-Modify your ```copy.config.js``` so it contains additional build instructions. The path to this file will look something like:
+Create or modify your ```copy.config.js``` file.  This file can tell ionic app-scripts to include extra content when it builds an Ionic app. If you are creating the file, put it in a folder named ```config``` that is at the same directory level as your ```src``` folder.
 
-```{{ROOT}}\node_modules\@ionic\app-scripts\config\copy.config.js```
-
-Add the instructions shown below.
+Put this inside ```config\copy.config.js```:
 ```
 module.exports = {
-  copyAssets: {},
-  copyIndexContent: {},
-  copyFonts: {},
-  copyPolyfills: {},
-  copySwToolbox: {},
-  
-  // add these next two build instructions
-  
-  copyStarRatingWebComponent: {
-    src: ['{{ROOT}}/node_modules/star-rating-web-component/dist/star-rating**/*'],
-    dest: '{{BUILD}}'
-  },
-  copyStarIonicons: {
-    src: [
-           '{{ROOT}}/node_modules/star-rating-web-component/dist/star-rating/svg/md-star-outline.js',
-           '{{ROOT}}/node_modules/star-rating-web-component/dist/star-rating/svg/md-star.js',
-           '{{ROOT}}/node_modules/star-rating-web-component/dist/star-rating/svg/ios-star-outline.js',
-           '{{ROOT}}/node_modules/star-rating-web-component/dist/star-rating/svg/ios-star.js'
-         ],
-    dest: '{{BUILD}}/star-rating/svg'
+    copyTimeAgoWebComponent: {
+      src: ['{{ROOT}}/node_modules/time-ago-web-component/dist/time-ago**/*'],
+      dest: '{{BUILD}}'
+    }
   }
-}
+ ```
+
+Now we need to tell app-scripts to use this file.  Add the following field to your ```package.json```:
 ```
+"config": {
+    "ionic_copy": "./config/copy.config.js"
+  }
+```
+Once you've made those changes, app-scripts will know how to include the web component in your builds.
 
 Return to [Setup](./setup.md)
